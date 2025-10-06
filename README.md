@@ -65,13 +65,6 @@ spring.datasource.url=jdbc:h2:mem:testdb
 spring.h2.console.enabled=true
 ```
 
-## 👤 Usuarios por defecto
-
-| Usuario | Contraseña | Rol |
-|---------|------------|-----|
-| admin   | admin123   | ADMIN |
-| user    | user123    | USER |
-
 ## 📁 Estructura del proyecto
 
 ```
