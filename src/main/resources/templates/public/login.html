@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Iniciar sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-secondary d-flex justify-content-center align-items-center vh-100">
+
+<div class="card bg-dark border-secondary shadow-lg p-4 p-md-5" style="max-width: 420px; width: 100%;">
+    <div class="card-body">
+        <h3 class="text-white text-center mb-4 fw-light">Iniciar sesión</h3>
+
+        <form th:action="@{/public/login}" method="post">
+            <div class="mb-4">
+                <label for="username" class="form-label text-white small">Usuario</label>
+                <input type="text"
+                       class="form-control bg-dark text-white border-secondary"
+                       id="username"
+                       name="username"
+                       required
+                       autofocus
+                       style="transition: border-color 0.3s;">
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="form-label text-white small">Contraseña</label>
+                <input type="password"
+                       class="form-control bg-dark text-white border-secondary"
+                       id="password"
+                       name="password"
+                       required
+                       style="transition: border-color 0.3s;">
+            </div>
+
+            <!-- Mensaje de error -->
+            <div th:if="${param.error}" class="alert alert-danger border-0 py-2 small" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-exclamation-circle me-2" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                </svg>
+                Usuario o contraseña incorrectos.
+            </div>
+
+            <!-- Mensaje si cerró sesión -->
+            <div th:if="${param.logout}" class="alert alert-success border-0 py-2 small" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-check-circle me-2" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                </svg>
+                Sesión cerrada correctamente.
+            </div>
+
+            <button type="submit" class="btn btn-light w-100 mt-3 py-2">
+                Ingresar
+            </button>
+        </form>
+
+        <div class="text-center mt-4" th:if="${primerUsuario}">
+            <a th:href="@{/public/primerRegistro}" class="text-white-50 text-decoration-none small">
+                ¿No tenés cuenta? <span class="text-white">Registrate</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Efecto focus en los inputs
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.style.borderColor = '#6c757d';
+            this.style.boxShadow = '0 0 0 0.2rem rgba(108, 117, 125, 0.25)';
+        });
+
+        input.addEventListener('blur', function() {
+            this.style.borderColor = '#6c757d';
+            this.style.boxShadow = 'none';
+        });
+    });
+</script>
+
+</body>
+</html>

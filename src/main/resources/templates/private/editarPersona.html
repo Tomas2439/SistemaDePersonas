@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editar Persona</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-secondary d-flex align-items-center justify-content-center min-vh-100 py-5">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-6">
+
+            <div class="card bg-dark border-secondary shadow-lg">
+                <div class="card-body p-4 p-md-5">
+
+                    <!-- Título principal -->
+                    <h1 class="text-white text-center mb-2 fw-light fs-2">Editar Persona</h1>
+                    <p class="text-white-50 text-center mb-4 small">Modifique los datos del registro</p>
+
+                    <form method="post" enctype="multipart/form-data" th:object="${personaDto}">
+
+                        <!-- Nombre -->
+                        <div class="mb-4">
+                            <label class="form-label text-white small">Nombre</label>
+                            <input type="text"
+                                   th:field="*{nombre}"
+                                   class="form-control bg-dark text-white border-secondary"
+                                   th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid border-danger'"
+                                   style="transition: border-color 0.3s;">
+                            <div th:if="${#fields.hasErrors('nombre')}"
+                                 class="invalid-feedback"
+                                 th:errors="*{nombre}"></div>
+                        </div>
+
+                        <!-- Apellido -->
+                        <div class="mb-4">
+                            <label class="form-label text-white small">Apellido</label>
+                            <input type="text"
+                                   th:field="*{apellido}"
+                                   class="form-control bg-dark text-white border-secondary"
+                                   th:classappend="${#fields.hasErrors('apellido')} ? 'is-invalid border-danger'"
+                                   style="transition: border-color 0.3s;">
+                            <div th:if="${#fields.hasErrors('apellido')}"
+                                 class="invalid-feedback"
+                                 th:errors="*{apellido}"></div>
+                        </div>
+
+                        <!-- DNI -->
+                        <div class="mb-4">
+                            <label class="form-label text-white small">DNI</label>
+                            <input type="text"
+                                   th:field="*{dni}"
+                                   class="form-control bg-dark text-white border-secondary"
+                                   th:classappend="${#fields.hasErrors('dni')} ? 'is-invalid border-danger'"
+                                   style="transition: border-color 0.3s;">
+                            <div th:if="${#fields.hasErrors('dni')}"
+                                 class="invalid-feedback"
+                                 th:errors="*{dni}"></div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-4">
+                            <label class="form-label text-white small">Email</label>
+                            <input type="text"
+                                   th:field="*{email}"
+                                   class="form-control bg-dark text-white border-secondary"
+                                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid border-danger'"
+                                   style="transition: border-color 0.3s;">
+                            <div th:if="${#fields.hasErrors('email')}"
+                                 class="invalid-feedback"
+                                 th:errors="*{email}"></div>
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div class="mb-4">
+                            <label class="form-label text-white small">Teléfono</label>
+                            <input type="text"
+                                   th:field="*{telefono}"
+                                   class="form-control bg-dark text-white border-secondary"
+                                   th:classappend="${#fields.hasErrors('telefono')} ? 'is-invalid border-danger'"
+                                   style="transition: border-color 0.3s;">
+                            <div th:if="${#fields.hasErrors('telefono')}"
+                                 class="invalid-feedback"
+                                 th:errors="*{telefono}"></div>
+                        </div>
+
+                        <!-- Observaciones -->
+                        <div class="mb-4">
+                            <label class="form-label text-white small">Observaciones</label>
+                            <textarea th:field="*{observaciones}"
+                                      class="form-control bg-dark text-white border-secondary"
+                                      th:classappend="${#fields.hasErrors('observaciones')} ? 'is-invalid border-danger'"
+                                      rows="3"
+                                      style="transition: border-color 0.3s; resize: vertical;"></textarea>
+                            <div th:if="${#fields.hasErrors('observaciones')}"
+                                 class="invalid-feedback"
+                                 th:errors="*{observaciones}"></div>
+                        </div>
+
+                        <!-- Botones de acción -->
+                        <div class="row g-3 mt-4">
+                            <div class="col-12 col-sm-6">
+                                <button type="submit" class="btn btn-light w-100 py-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-save me-2" viewBox="0 0 16 16" style="vertical-align: middle;">
+                                        <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1z"/>
+                                    </svg>
+                                    Guardar cambios
+                                </button>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <a class="btn btn-outline-danger fw-bold w-100 py-2"
+                                   href="/public/lista"
+                                   role="button">
+                                    Cancelar
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Efecto focus en los inputs y textarea
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('focus', function() {
+            if (!this.classList.contains('is-invalid')) {
+                this.style.borderColor = '#6c757d';
+                this.style.boxShadow = '0 0 0 0.2rem rgba(108, 117, 125, 0.25)';
+            }
+        });
+
+        input.addEventListener('blur', function() {
+            if (!this.classList.contains('is-invalid')) {
+                this.style.borderColor = '#6c757d';
+                this.style.boxShadow = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

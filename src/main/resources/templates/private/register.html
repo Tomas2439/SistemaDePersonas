@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crear usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-secondary d-flex justify-content-center align-items-center min-vh-100 py-5">
+
+<div class="card bg-dark border-secondary shadow-lg p-4 p-md-5" style="max-width: 500px; width: 100%;">
+    <div class="card-body">
+
+        <!-- Título principal -->
+        <h3 class="text-white text-center mb-2 fw-light">Crear usuario</h3>
+        <p class="text-white-50 text-center mb-4 small">Asigne credenciales y permisos</p>
+
+        <form th:action="@{/private/register}" th:object="${usuario}" method="post">
+
+            <!-- Username -->
+            <div class="mb-4">
+                <label class="form-label text-white small">Usuario</label>
+                <input type="text"
+                       th:field="*{username}"
+                       class="form-control bg-dark text-white border-secondary"
+                       th:classappend="${#fields.hasErrors('username')} ? 'is-invalid border-danger'"
+                       style="transition: border-color 0.3s;"
+                       autofocus>
+                <div th:if="${#fields.hasErrors('username')}"
+                     class="invalid-feedback"
+                     th:errors="*{username}"></div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+                <label class="form-label text-white small">Contraseña</label>
+                <input type="password"
+                       th:field="*{password}"
+                       class="form-control bg-dark text-white border-secondary"
+                       th:classappend="${#fields.hasErrors('password')} ? 'is-invalid border-danger'"
+                       style="transition: border-color 0.3s;"
+                       required>
+                <div th:if="${#fields.hasErrors('password')}"
+                     class="invalid-feedback"
+                     th:errors="*{password}"></div>
+            </div>
+
+            <!-- Permisos -->
+            <div class="mb-4">
+                <label class="form-label text-white small">Permisos</label>
+                <select th:field="*{priority}"
+                        class="form-select bg-dark text-white border-secondary"
+                        th:classappend="${#fields.hasErrors('priority')} ? 'is-invalid border-danger'"
+                        style="transition: border-color 0.3s;">
+                    <option value="" disabled selected>-- Seleccione un permiso --</option>
+                    <option value="1">ADMIN</option>
+                    <option value="0">USER</option>
+                </select>
+                <div th:if="${#fields.hasErrors('priority')}"
+                     class="invalid-feedback"
+                     th:errors="*{priority}"></div>
+            </div>
+
+            <!-- Persona (hidden) -->
+            <input type="hidden" th:field="*{personaId}" th:value="${personaId}"/>
+
+            <!-- Botones de acción -->
+            <div class="row g-3 mt-4">
+                <div class="col-12 col-sm-6">
+                    <button type="submit" class="btn btn-light w-100 py-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-check-circle me-2" viewBox="0 0 16 16" style="vertical-align: middle;">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                        </svg>
+                        Guardar usuario
+                    </button>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <a th:href="@{/private/usuarios(id=*{personaId})}"
+                       class="btn btn-outline-danger w-100 py-2"
+                       role="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-x-circle me-2" viewBox="0 0 16 16" style="vertical-align: middle;">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
+                        Cancelar
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Efecto focus en los inputs y select
+    document.querySelectorAll('.form-control, .form-select').forEach(input => {
+        input.addEventListener('focus', function() {
+            if (!this.classList.contains('is-invalid')) {
+                this.style.borderColor = '#6c757d';
+                this.style.boxShadow = '0 0 0 0.2rem rgba(108, 117, 125, 0.25)';
+            }
+        });
+
+        input.addEventListener('blur', function() {
+            if (!this.classList.contains('is-invalid')) {
+                this.style.borderColor = '#6c757d';
+                this.style.boxShadow = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+
