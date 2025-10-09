@@ -70,19 +70,21 @@ spring.h2.console.enabled=true
 ```
 SistemaDePersonas/
 ├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/sistema/personas/
-│   │   │       ├── controller/
-│   │   │       ├── model/
-│   │   │       ├── repository/
-│   │   │       ├── service/
-│   │   │       └── security/
-│   │   └── resources/
-│   │       ├── templates/
-│   │       ├── static/
-│   │       └── application.properties
-│   └── test/
+│   └── main/
+│       ├── java/
+│       │   └── com/sistema/personas/
+│       │       ├── config/
+│       │       ├── controller/
+│       │       ├── exception/
+│       │       ├── models/
+│       │       ├── repository/
+│       │       ├── service/
+│       │       └── utils/
+│       └── resources/
+│           ├── templates/
+│           │   ├── private/
+│           │   ├── public/
+│           └── application.properties
 ├── pom.xml
 └── README.md
 ```
