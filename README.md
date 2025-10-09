@@ -1,6 +1,6 @@
 # Sistema de Personas
 
-Trabajo Práctico 1 - Programación 3 - TUP Extensión Áulica Necochea
+Trabajo Práctico 1 - Programación 3 - TUP UTN Extensión Áulica Necochea
 
 Sistema de gestión de personas con autenticación y autorización.
 
